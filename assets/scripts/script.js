@@ -4,31 +4,29 @@ let limit = 20;
 let buttonArr = [];
 
 function renderButton(btnText) {
-	$("#button-layer").append($('<button class="btn btn-sm btn-info btn-giphy">'+ btnText +'</button>'));
+	$("#button-layer").append($('<button class="btn btn-sm btn-info btn-giphy">'+ btnText +'</button>'))
 }
 
-function getGiphys () {
-	$("#add-button").on("click", function(event) {
-	let queryURL = "https://api.giphy.com//v1/gifs/search?api_key=ogVLKSnkrB9aXOea5H9184V3CLtAOdbf&q=" + $(this).html() + "&limit=" + limit + "&rating=g";
+function getGiphys() {
+	let queryURL = "https://api.giphy.com//v1/gifs/search?api_key=ogVLKSnkrB9aXOea5H9184V3CLtAOdbf&q=" + $(this).html() + "&limit=" + limit + "&rating=g"
 
 	$.ajax({
-	  url: queryURL,
-	  method: "GET"
+		url: queryURL,
+		method: "GET"
 	}).done(function (response) {
-		renderGiphys(response);
-	});
-
+		renderGiphys(response)
+	})
 }
 
 function renderGiphys(response) {
-	$("#result-container").empty();
+	$("#result-container").empty()
 
 	$.map(response.data, function (carddata) {
-		let imageID = carddata.id;
-		let stillImg = carddata.images.original_still.url;
-		let animatedImg = carddata.images.downsized_large.url;
+		let imageID = carddata.id
+		let stillImg = carddata.images.original_still.url
+		let animatedImg = carddata.images.downsized_large.url
 		let url = carddata.url; //currently unused, may use for full launch link via id
-		let imagecard = $("#original-giphy-card").clone().removeAttr("id");
+		let imagecard = $("#original-giphy-card").clone().removeAttr("id")
 
 		imagecard.find("img").attr("src", stillImg);
 		imagecard.find("img").attr("data-animsrc", animatedImg);
