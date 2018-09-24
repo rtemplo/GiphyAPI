@@ -8,7 +8,8 @@ function renderButton(btnText) {
 }
 
 function getGiphys () {
-	let queryURL = "https://api.giphy.com//v1/gifs/search?api_key=568ac25997f94bc8869f84d3cf37ad02&q=" + $(this).html() + "&limit=" + limit + "&rating=g";
+	$("#add-button").on("click", function(event) {
+	let queryURL = "https://api.giphy.com//v1/gifs/search?api_key=ogVLKSnkrB9aXOea5H9184V3CLtAOdbf&q=" + $(this).html() + "&limit=" + limit + "&rating=g";
 
 	$.ajax({
 	  url: queryURL,
